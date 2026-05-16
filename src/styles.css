@@ -613,6 +613,13 @@ textarea:focus {
   background-color: #00a676;
 }
 
+.tone-mint {
+  --tone: #4fb286;
+  --card-ink: #f7fffb;
+  --card-muted: #285946;
+  background-color: #4fb286;
+}
+
 .tone-amber {
   --tone: #f6c65b;
   --card-ink: #241a06;
@@ -625,6 +632,13 @@ textarea:focus {
   --card-ink: #fff8f8;
   --card-muted: #6c3f47;
   background-color: #e85d75;
+}
+
+.tone-coral {
+  --tone: #e46f5d;
+  --card-ink: #fff8f5;
+  --card-muted: #6b3f37;
+  background-color: #e46f5d;
 }
 
 .tone-ink {
@@ -660,6 +674,13 @@ textarea:focus {
   --card-ink: #fbfaff;
   --card-muted: #3f3b67;
   background-color: #7c6ae8;
+}
+
+.tone-violet {
+  --tone: #b15be8;
+  --card-ink: #fffaff;
+  --card-muted: #563465;
+  background-color: #b15be8;
 }
 
 .tone-cyan {

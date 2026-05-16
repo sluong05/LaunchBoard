@@ -58,13 +58,13 @@ const sectionTones = {
   Social: "rose",
   Google: "red",
   Research: "indigo",
-  Build: "green",
-  Daily: "red",
+  Build: "mint",
+  Daily: "coral",
   Learning: "cyan",
   Health: "teal",
   Travel: "sky",
   Shopping: "orange",
-  Entertainment: "blue",
+  Entertainment: "violet",
   Utilities: "ink",
   Unsorted: "ink"
 };
