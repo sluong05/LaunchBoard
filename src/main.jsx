@@ -174,6 +174,7 @@ function App() {
   const [customSectionOpen, setCustomSectionOpen] = useState(false);
   const [theme, setTheme] = useState(() => localStorage.getItem(THEME_KEY) || "dark");
   const importRef = useRef(null);
+  const searchRef = useRef(null);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(links));
@@ -183,6 +184,10 @@ function App() {
     document.documentElement.dataset.theme = theme;
     localStorage.setItem(THEME_KEY, theme);
   }, [theme]);
+
+  useEffect(() => {
+    searchRef.current?.focus();
+  }, []);
 
   const categories = useMemo(() => categoryStats(links), [links]);
   const sectionOptions = useMemo(() => {
@@ -472,6 +477,7 @@ function App() {
         <div className="search-box">
           <Search size={18} />
           <input
+            ref={searchRef}
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search links, tags, or sections"
