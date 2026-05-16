@@ -18,6 +18,7 @@ import {
   Search,
   Star,
   StarOff,
+  StickyNote,
   Sun,
   Tags,
   Trash2,
@@ -36,6 +37,7 @@ const seedLinks = [
     category: "School",
     color: "plum",
     tags: ["classes", "assignments"],
+    notes: "Course home base for assignments, modules, grades, and professor updates.",
     favorite: true
   },
   {
@@ -45,6 +47,7 @@ const seedLinks = [
     category: "Research",
     color: "blue",
     tags: ["articles", "books"],
+    notes: "Use this when you need databases, citations, research guides, or book reservations.",
     favorite: false
   },
   {
@@ -54,6 +57,7 @@ const seedLinks = [
     category: "Daily",
     color: "red",
     tags: ["email"],
+    notes: "Main inbox for school messages and account notifications.",
     favorite: true
   },
   {
@@ -63,6 +67,7 @@ const seedLinks = [
     category: "Build",
     color: "green",
     tags: ["code", "repos"],
+    notes: "Code repositories, project issues, pull requests, and deployment notes.",
     favorite: false
   }
 ];
@@ -84,6 +89,7 @@ const emptyDraft = {
   category: "",
   color: "plum",
   tags: "",
+  notes: "",
   favorite: false
 };
 
@@ -152,7 +158,7 @@ function App() {
       .filter((link) => activeCategory === "All" || (link.category || "Unsorted") === activeCategory)
       .filter((link) => {
         if (!needle) return true;
-        return [link.title, link.url, link.category, ...(link.tags || [])]
+        return [link.title, link.url, link.category, link.notes, ...(link.tags || [])]
           .join(" ")
           .toLowerCase()
           .includes(needle);
@@ -179,6 +185,7 @@ function App() {
       category: draft.category.trim() || "Unsorted",
       color: draft.color,
       tags: tagsFromDraft(draft.tags),
+      notes: draft.notes.trim(),
       favorite: draft.favorite
     };
 
@@ -198,6 +205,7 @@ function App() {
       category: link.category,
       color: link.color,
       tags: (link.tags || []).join(", "),
+      notes: link.notes || "",
       favorite: link.favorite
     });
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -246,6 +254,7 @@ function App() {
               category: item.category ? String(item.category) : "Unsorted",
               color: swatches.includes(item.color) ? item.color : "plum",
               tags: Array.isArray(item.tags) ? item.tags.map(String) : [],
+              notes: item.notes ? String(item.notes) : "",
               favorite: Boolean(item.favorite)
             }))
         );
@@ -338,6 +347,16 @@ function App() {
               />
             </label>
           </div>
+
+          <label>
+            <span>Notes</span>
+            <textarea
+              value={draft.notes}
+              onChange={(event) => setDraft({ ...draft, notes: event.target.value })}
+              placeholder="Why this link matters, where it takes you, or what to do there"
+              rows={3}
+            />
+          </label>
 
           <fieldset className="swatch-group">
             <legend>Color</legend>
@@ -481,6 +500,12 @@ function App() {
                     {extractHost(link.url)}
                     <ExternalLink size={14} />
                   </a>
+                  {link.notes && (
+                    <p className="link-notes">
+                      <StickyNote size={15} />
+                      {link.notes}
+                    </p>
+                  )}
                 </div>
                 {!!link.tags?.length && (
                   <div className="tag-row" aria-label="Tags">
