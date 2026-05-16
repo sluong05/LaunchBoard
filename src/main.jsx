@@ -105,6 +105,330 @@ const seedLinks = [
     tags: ["code", "repos"],
     notes: "Code repositories, project issues, pull requests, and deployment notes.",
     favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Google Calendar",
+    url: "https://calendar.google.com/",
+    category: "Google",
+    tags: ["calendar", "schedule"],
+    notes: "Check classes, plans, deadlines, and anything coming up next.",
+    favorite: true
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Google Drive",
+    url: "https://drive.google.com/",
+    category: "Google",
+    tags: ["files", "docs"],
+    notes: "Find shared files, docs, spreadsheets, and class or project folders.",
+    favorite: true
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Google Docs",
+    url: "https://docs.google.com/",
+    category: "Google",
+    tags: ["writing", "documents"],
+    notes: "Draft papers, notes, project docs, and shared writing.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Google Sheets",
+    url: "https://sheets.google.com/",
+    category: "Google",
+    tags: ["spreadsheets", "tracking"],
+    notes: "Track budgets, schedules, lists, data, and plans.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "MyUW",
+    url: "https://my.uw.edu/",
+    category: "School",
+    tags: ["portal", "uw"],
+    notes: "UW portal for registration, tuition, accounts, and student resources.",
+    favorite: true
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "UW Email",
+    url: "https://mail.google.com/a/uw.edu",
+    category: "School",
+    tags: ["email", "uw"],
+    notes: "School email for course messages, admin notices, and UW updates.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Handshake",
+    url: "https://joinhandshake.com/",
+    category: "Work",
+    tags: ["jobs", "career"],
+    notes: "Search internships, campus jobs, recruiting events, and career leads.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "LinkedIn",
+    url: "https://www.linkedin.com/",
+    category: "Work",
+    tags: ["network", "career"],
+    notes: "Professional profile, networking, job search, and company research.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Indeed",
+    url: "https://www.indeed.com/",
+    category: "Work",
+    tags: ["jobs", "applications"],
+    notes: "Quick job search and saved application tracking.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Vercel",
+    url: "https://vercel.com/dashboard",
+    category: "Personal Projects",
+    tags: ["deploy", "hosting"],
+    notes: "Deploy and manage personal web projects.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "GitHub Issues",
+    url: "https://github.com/issues",
+    category: "Personal Projects",
+    tags: ["tasks", "code"],
+    notes: "Central place to review open issues across repositories.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Stack Overflow",
+    url: "https://stackoverflow.com/",
+    category: "Build",
+    tags: ["debug", "answers"],
+    notes: "Look up coding errors, implementation patterns, and API examples.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "MDN Web Docs",
+    url: "https://developer.mozilla.org/",
+    category: "Build",
+    tags: ["web", "reference"],
+    notes: "Reference for HTML, CSS, JavaScript, browser APIs, and web behavior.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "ChatGPT",
+    url: "https://chatgpt.com/",
+    category: "Learning",
+    tags: ["ai", "study"],
+    notes: "Ask questions, brainstorm, explain code, and work through concepts.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Khan Academy",
+    url: "https://www.khanacademy.org/",
+    category: "Learning",
+    tags: ["practice", "lessons"],
+    notes: "Review fundamentals, practice topics, and fill knowledge gaps.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Coursera",
+    url: "https://www.coursera.org/",
+    category: "Learning",
+    tags: ["courses", "certificates"],
+    notes: "Browse structured courses and skill-building programs.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Yahoo Finance",
+    url: "https://finance.yahoo.com/",
+    category: "Finances",
+    tags: ["markets", "stocks"],
+    notes: "Check market headlines, tickers, watchlists, and financial news.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Credit Karma",
+    url: "https://www.creditkarma.com/",
+    category: "Finances",
+    tags: ["credit", "money"],
+    notes: "Monitor credit score, accounts, and financial recommendations.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Venmo",
+    url: "https://venmo.com/",
+    category: "Finances",
+    tags: ["payments", "friends"],
+    notes: "Send and request payments.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Instagram",
+    url: "https://www.instagram.com/",
+    category: "Social",
+    tags: ["friends", "photos"],
+    notes: "Social updates, messages, and saved posts.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Discord",
+    url: "https://discord.com/channels/@me",
+    category: "Social",
+    tags: ["chat", "communities"],
+    notes: "Messages, servers, clubs, communities, and group chats.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Reddit",
+    url: "https://www.reddit.com/",
+    category: "Social",
+    tags: ["forums", "communities"],
+    notes: "Browse communities, advice threads, and niche updates.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "YouTube",
+    url: "https://www.youtube.com/",
+    category: "Entertainment",
+    tags: ["videos", "music"],
+    notes: "Videos, tutorials, music, and saved channels.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Netflix",
+    url: "https://www.netflix.com/",
+    category: "Entertainment",
+    tags: ["shows", "movies"],
+    notes: "Streaming queue and watch list.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Spotify",
+    url: "https://open.spotify.com/",
+    category: "Entertainment",
+    tags: ["music", "podcasts"],
+    notes: "Music, playlists, podcasts, and focus sessions.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Amazon",
+    url: "https://www.amazon.com/",
+    category: "Shopping",
+    tags: ["orders", "shopping"],
+    notes: "Orders, essentials, wish lists, and quick buys.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Google Maps",
+    url: "https://maps.google.com/",
+    category: "Travel",
+    tags: ["maps", "directions"],
+    notes: "Directions, traffic, places, and route planning.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Google Flights",
+    url: "https://www.google.com/travel/flights",
+    category: "Travel",
+    tags: ["flights", "trips"],
+    notes: "Compare flights and track trip pricing.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Airbnb",
+    url: "https://www.airbnb.com/",
+    category: "Travel",
+    tags: ["stays", "trips"],
+    notes: "Plan stays for trips, weekends, and travel ideas.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "United States Tennis Association",
+    url: "https://www.usta.com/",
+    category: "Tennis",
+    tags: ["tennis", "leagues"],
+    notes: "Tennis events, leagues, ratings, and local tennis resources.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Tennis Warehouse",
+    url: "https://www.tennis-warehouse.com/",
+    category: "Tennis",
+    tags: ["gear", "racquets"],
+    notes: "Research racquets, strings, shoes, and tennis gear.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Mountain Project",
+    url: "https://www.mountainproject.com/",
+    category: "Climbing",
+    tags: ["routes", "outdoors"],
+    notes: "Find climbing routes, grades, areas, and route beta.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "REI",
+    url: "https://www.rei.com/",
+    category: "Climbing",
+    tags: ["gear", "outdoors"],
+    notes: "Outdoor gear, climbing equipment, and trip supplies.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Weather",
+    url: "https://weather.com/",
+    category: "Utilities",
+    tags: ["forecast", "daily"],
+    notes: "Check weather before commute, tennis, climbing, or travel.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "Google Translate",
+    url: "https://translate.google.com/",
+    category: "Utilities",
+    tags: ["language", "translate"],
+    notes: "Translate text, sites, and quick language questions.",
+    favorite: false
+  },
+  {
+    id: crypto.randomUUID(),
+    title: "MyChart",
+    url: "https://www.mychart.org/",
+    category: "Health",
+    tags: ["medical", "records"],
+    notes: "Health messages, appointments, test results, and medical records.",
+    favorite: false
   }
 ];
 
