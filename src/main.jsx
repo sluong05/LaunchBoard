@@ -306,7 +306,8 @@ function App() {
 
   return (
     <main className="app-shell">
-      <section className="command-deck">
+      <section className="workspace-grid">
+        <aside className="left-dashboard" aria-label="Launchboard controls">
         <div className="hero-panel">
           <div className="brand-lockup">
             <div className="brand-mark" aria-hidden="true">
@@ -445,7 +446,33 @@ function App() {
             {editingId ? "Save changes" : "Add link"}
           </button>
         </form>
-      </section>
+
+        <nav className="section-rail" aria-label="Sections">
+          <button
+            className={`section-tab ${activeCategory === "All" ? "is-active" : ""}`}
+            type="button"
+            onClick={() => setActiveCategory("All")}
+          >
+            <Grid2X2 size={17} />
+            <span>All links</span>
+            <b>{links.length}</b>
+          </button>
+          {categories.map(([category, count]) => (
+            <button
+              className={`section-tab ${activeCategory === category ? "is-active" : ""}`}
+              type="button"
+              key={category}
+              onClick={() => setActiveCategory(category)}
+            >
+              <Boxes size={17} />
+              <span>{category}</span>
+              <b>{count}</b>
+            </button>
+          ))}
+        </nav>
+        </aside>
+
+        <section className="right-dashboard" aria-label="Quick links">
 
       <section className="toolbar" aria-label="Link controls">
         <div className="search-box">
@@ -478,31 +505,6 @@ function App() {
         </button>
         <input ref={importRef} className="hidden-input" type="file" accept="application/json" onChange={importLinks} />
       </section>
-
-      <section className="content-grid">
-        <aside className="section-rail" aria-label="Sections">
-          <button
-            className={`section-tab ${activeCategory === "All" ? "is-active" : ""}`}
-            type="button"
-            onClick={() => setActiveCategory("All")}
-          >
-            <Grid2X2 size={17} />
-            <span>All links</span>
-            <b>{links.length}</b>
-          </button>
-          {categories.map(([category, count]) => (
-            <button
-              className={`section-tab ${activeCategory === category ? "is-active" : ""}`}
-              type="button"
-              key={category}
-              onClick={() => setActiveCategory(category)}
-            >
-              <Boxes size={17} />
-              <span>{category}</span>
-              <b>{count}</b>
-            </button>
-          ))}
-        </aside>
 
         <section className="links-zone" aria-label="Quick links">
           {favoriteLinks.length > 0 && (
@@ -588,6 +590,7 @@ function App() {
               <p>Try a different search or add a new link to this section.</p>
             </div>
           )}
+        </section>
         </section>
       </section>
     </main>
