@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 import {
   ArrowUpRight,
   Boxes,
-  Check,
   Download,
   Edit3,
   ExternalLink,
@@ -49,13 +48,33 @@ const defaultSections = [
   "Utilities"
 ];
 
+const sectionTones = {
+  School: "plum",
+  Work: "slate",
+  Tennis: "green",
+  Climbing: "terra",
+  "Personal Projects": "blue",
+  Finances: "amber",
+  Social: "rose",
+  Google: "red",
+  Research: "indigo",
+  Build: "green",
+  Daily: "red",
+  Learning: "cyan",
+  Health: "teal",
+  Travel: "sky",
+  Shopping: "orange",
+  Entertainment: "blue",
+  Utilities: "ink",
+  Unsorted: "ink"
+};
+
 const seedLinks = [
   {
     id: crypto.randomUUID(),
     title: "UW Canvas",
     url: "https://canvas.uw.edu/",
     category: "School",
-    color: "plum",
     tags: ["classes", "assignments"],
     notes: "Course home base for assignments, modules, grades, and professor updates.",
     favorite: true
@@ -65,7 +84,6 @@ const seedLinks = [
     title: "UW Libraries",
     url: "https://www.lib.washington.edu/",
     category: "Research",
-    color: "blue",
     tags: ["articles", "books"],
     notes: "Use this when you need databases, citations, research guides, or book reservations.",
     favorite: false
@@ -75,7 +93,6 @@ const seedLinks = [
     title: "Gmail",
     url: "https://mail.google.com/",
     category: "Daily",
-    color: "red",
     tags: ["email"],
     notes: "Main inbox for school messages and account notifications.",
     favorite: true
@@ -85,29 +102,16 @@ const seedLinks = [
     title: "GitHub",
     url: "https://github.com/",
     category: "Build",
-    color: "green",
     tags: ["code", "repos"],
     notes: "Code repositories, project issues, pull requests, and deployment notes.",
     favorite: false
   }
 ];
 
-const swatches = ["plum", "blue", "green", "amber", "red", "ink"];
-
-const colorLabels = {
-  plum: "Plum",
-  blue: "Blue",
-  green: "Green",
-  amber: "Amber",
-  red: "Red",
-  ink: "Ink"
-};
-
 const emptyDraft = {
   title: "",
   url: "",
   category: "",
-  color: "plum",
   tags: "",
   notes: "",
   favorite: false
@@ -150,6 +154,15 @@ function categoryStats(links) {
     stats.set(key, (stats.get(key) || 0) + 1);
   });
   return [...stats.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+}
+
+function sectionTone(category) {
+  const section = category || "Unsorted";
+  if (sectionTones[section]) return sectionTones[section];
+  const tones = ["plum", "blue", "green", "amber", "red", "indigo", "teal", "orange", "slate"];
+  let total = 0;
+  for (const character of section) total += character.charCodeAt(0);
+  return tones[total % tones.length];
 }
 
 function App() {
@@ -209,7 +222,6 @@ function App() {
       title,
       url,
       category: draft.category.trim() || "Unsorted",
-      color: draft.color,
       tags: tagsFromDraft(draft.tags),
       notes: draft.notes.trim(),
       favorite: draft.favorite
@@ -229,7 +241,6 @@ function App() {
       title: link.title,
       url: link.url,
       category: link.category,
-      color: link.color,
       tags: (link.tags || []).join(", "),
       notes: link.notes || "",
       favorite: link.favorite
@@ -289,7 +300,6 @@ function App() {
               title: String(item.title),
               url: normalizeUrl(String(item.url)),
               category: item.category ? String(item.category) : "Unsorted",
-              color: swatches.includes(item.color) ? item.color : "plum",
               tags: Array.isArray(item.tags) ? item.tags.map(String) : [],
               notes: item.notes ? String(item.notes) : "",
               favorite: Boolean(item.favorite)
@@ -414,22 +424,6 @@ function App() {
             />
           </label>
 
-          <fieldset className="swatch-group">
-            <legend>Color</legend>
-            {swatches.map((color) => (
-              <button
-                className={`swatch swatch-${color}`}
-                type="button"
-                key={color}
-                onClick={() => setDraft({ ...draft, color })}
-                aria-label={`${colorLabels[color]} color`}
-                aria-pressed={draft.color === color}
-              >
-                {draft.color === color && <Check size={14} />}
-              </button>
-            ))}
-          </fieldset>
-
           <label className="favorite-toggle">
             <input
               type="checkbox"
@@ -514,7 +508,13 @@ function App() {
                 Pinned
               </div>
               {favoriteLinks.slice(0, 6).map((link) => (
-                <a className={`mini-link tone-${link.color}`} key={link.id} href={link.url} target="_blank" rel="noreferrer">
+                <a
+                  className={`mini-link tone-${sectionTone(link.category)}`}
+                  key={link.id}
+                  href={link.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   {link.title}
                   <ArrowUpRight size={14} />
                 </a>
@@ -524,7 +524,7 @@ function App() {
 
           <div className="link-board">
             {filteredLinks.map((link) => (
-              <article className={`link-card tone-${link.color}`} key={link.id}>
+              <article className={`link-card tone-${sectionTone(link.category)}`} key={link.id}>
                 <div className="card-topline">
                   <a
                     className="favicon-badge"
