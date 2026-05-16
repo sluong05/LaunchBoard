@@ -28,6 +28,26 @@ import "./styles.css";
 
 const STORAGE_KEY = "launchboard.links.v1";
 const THEME_KEY = "launchboard.theme.v1";
+const SECTION_OTHER = "__other__";
+const defaultSections = [
+  "School",
+  "Work",
+  "Tennis",
+  "Climbing",
+  "Personal Projects",
+  "Finances",
+  "Social",
+  "Google",
+  "Research",
+  "Build",
+  "Daily",
+  "Learning",
+  "Health",
+  "Travel",
+  "Shopping",
+  "Entertainment",
+  "Utilities"
+];
 
 const seedLinks = [
   {
@@ -138,6 +158,7 @@ function App() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [draft, setDraft] = useState(emptyDraft);
   const [editingId, setEditingId] = useState(null);
+  const [customSectionOpen, setCustomSectionOpen] = useState(false);
   const [theme, setTheme] = useState(() => localStorage.getItem(THEME_KEY) || "dark");
   const importRef = useRef(null);
 
@@ -151,6 +172,10 @@ function App() {
   }, [theme]);
 
   const categories = useMemo(() => categoryStats(links), [links]);
+  const sectionOptions = useMemo(() => {
+    const savedSections = categories.map(([category]) => category);
+    return [...new Set([...defaultSections, ...savedSections])].filter((section) => section !== "Unsorted");
+  }, [categories]);
 
   const filteredLinks = useMemo(() => {
     const needle = query.trim().toLowerCase();
@@ -171,6 +196,7 @@ function App() {
   function resetForm() {
     setDraft(emptyDraft);
     setEditingId(null);
+    setCustomSectionOpen(false);
   }
 
   function handleSubmit(event) {
@@ -208,7 +234,18 @@ function App() {
       notes: link.notes || "",
       favorite: link.favorite
     });
+    setCustomSectionOpen(!sectionOptions.includes(link.category || ""));
     window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function updateSection(value) {
+    if (value === SECTION_OTHER) {
+      setCustomSectionOpen(true);
+      setDraft({ ...draft, category: "" });
+      return;
+    }
+    setCustomSectionOpen(false);
+    setDraft({ ...draft, category: value });
   }
 
   function removeLink(id) {
@@ -332,11 +369,18 @@ function App() {
           <div className="form-grid">
             <label>
               <span>Section</span>
-              <input
-                value={draft.category}
-                onChange={(event) => setDraft({ ...draft, category: event.target.value })}
-                placeholder="School"
-              />
+              <select
+                value={customSectionOpen ? SECTION_OTHER : draft.category}
+                onChange={(event) => updateSection(event.target.value)}
+              >
+                <option value="">Choose section</option>
+                {sectionOptions.map((section) => (
+                  <option key={section} value={section}>
+                    {section}
+                  </option>
+                ))}
+                <option value={SECTION_OTHER}>Other...</option>
+              </select>
             </label>
             <label>
               <span>Tags</span>
@@ -347,6 +391,17 @@ function App() {
               />
             </label>
           </div>
+
+          {customSectionOpen && (
+            <label>
+              <span>Custom section</span>
+              <input
+                value={draft.category}
+                onChange={(event) => setDraft({ ...draft, category: event.target.value })}
+                placeholder="Recipes, Career, Reading..."
+              />
+            </label>
+          )}
 
           <label>
             <span>Notes</span>
