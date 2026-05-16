@@ -512,8 +512,6 @@ function App() {
                   className={`mini-link tone-${sectionTone(link.category)}`}
                   key={link.id}
                   href={link.url}
-                  target="_blank"
-                  rel="noreferrer"
                 >
                   {link.title}
                   <ArrowUpRight size={14} />
@@ -529,8 +527,6 @@ function App() {
                   <a
                     className="favicon-badge"
                     href={link.url}
-                    target="_blank"
-                    rel="noreferrer"
                     aria-label={`Open ${link.title}`}
                     title={`Open ${link.title}`}
                   >
@@ -559,7 +555,7 @@ function App() {
                 <div>
                   <p className="card-category">{link.category || "Unsorted"}</p>
                   <h3>{link.title}</h3>
-                  <a className="host-link" href={link.url} target="_blank" rel="noreferrer">
+                  <a className="host-link" href={link.url}>
                     <Link2 size={15} />
                     {extractHost(link.url)}
                     <ExternalLink size={14} />
