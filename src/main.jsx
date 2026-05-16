@@ -469,12 +469,19 @@ function App() {
             {filteredLinks.map((link) => (
               <article className={`link-card tone-${link.color}`} key={link.id}>
                 <div className="card-topline">
-                  <div className="favicon-badge">
+                  <a
+                    className="favicon-badge"
+                    href={link.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Open ${link.title}`}
+                    title={`Open ${link.title}`}
+                  >
                     <img
                       src={`https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(link.url)}`}
                       alt=""
                     />
-                  </div>
+                  </a>
                   <div className="card-actions">
                     <button
                       className="icon-button small"

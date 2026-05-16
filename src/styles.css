@@ -491,6 +491,14 @@ textarea:focus {
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.08);
   border-radius: var(--radius);
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.favicon-badge:hover,
+.favicon-badge:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--tone);
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .favicon-badge img {
